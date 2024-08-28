@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { LoanFormComponent } from './components/loan-form/loan-form.component';
+import { AmortizationChartComponent } from './components/amortization-chart/amortization-chart.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [LoanFormComponent, AmortizationChartComponent,CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'loan-amortization-calculator';
+  amortizationSchedule$: Observable<any[]>;
+
+  constructor(private store: Store<{ loan: any }>) {
+    this.amortizationSchedule$ = store.pipe(select(state => state.loan.amortizationSchedule));
+  }
 }

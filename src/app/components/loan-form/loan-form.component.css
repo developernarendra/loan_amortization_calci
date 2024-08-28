@@ -1,0 +1,18 @@
+.loan-form {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+
+  mat-card {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
